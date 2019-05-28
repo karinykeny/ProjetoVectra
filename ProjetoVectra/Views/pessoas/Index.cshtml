@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ProjetoVectra.Models.Pessoa>
+
+@{
+    ViewBag.Title = "Cadastro";
+}
+
+<h2>Lista de cadastros</h2>
+ 
+    <p>
+        @Html.ActionLink("Voltar", "Create")
+    </p>
+    <div class="form-inline">
+        <p>
+            Pesquisa por CPF:
+            @using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
+            {
+                @Html.TextBox("Pesquisa", "", new { @maxlength = "11", @class = "form-control form-control-sm" })
+                <input type="submit" value="Pesquisar" class="btn btn-info" />
+            }
+        </p>
+    </div>
+
+
+<br /><div class="panel panel-danger">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imc)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Idade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Altura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Imc)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/validacao.js"></script>
